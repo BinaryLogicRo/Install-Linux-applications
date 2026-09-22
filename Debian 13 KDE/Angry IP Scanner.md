@@ -2,6 +2,8 @@
 
 Angry IP Scanner is a fast network scanner for Linux.
 
+**Warning:** The desktop session must be run under Wayland, otherwise the app will crash when trying to open it's settings window.
+
 ## Download
 
 Go to [Github Repository of Angry IP Scanner](https://github.com/angryip/ipscan/releases) and download the `.deb` package for version **3.10.0**.
