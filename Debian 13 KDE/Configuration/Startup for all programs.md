@@ -13,13 +13,13 @@ and paste:
 ```bash
 #!/usr/bin/env bash
 MOZ_ENABLE_WAYLAND=0 /home/user/Applications/thunderbird/thunderbird &
-sleep 3
+sleep 6
 xdotool search --sync --onlyvisible --class thunderbird windowminimize %@
 ```
 
 **Explanation:**
 - the `MOZ_ENABLE_WAYLAND=0` ensures that the xdotool can interact with the Thunderbird window correctly when using Wayland.
-- `sleep 3` ensures that there is enough time for the Thunderbird window to appear before xdotool tries to minimize it.
+- `sleep 6` ensures that there is enough time for the Thunderbird window to appear before xdotool tries to minimize it.
 
 ### 1.2 Make the `startup.sh` script executable.
 
