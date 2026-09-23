@@ -93,6 +93,10 @@ nano ~/.config/kwinrulesrc
 you should have a new rule section for Thunderbird, similar to the following:
 
 ```ini
+[General]
+count=1
+rules=e2319791-c7a2-4e4f-b342-bfe7f8948b03
+
 [e2319791-c7a2-4e4f-b342-bfe7f8948b03]
 Description=Thunderbird on left monitor
 maximizehoriz=true
