@@ -113,3 +113,117 @@ windowrolematch=1
 wmclass=thunderbird
 wmclassmatch=1
 ```
+
+## 2 WhatsApp and Teams (Web Apps)
+
+The `.desktop` files for WhatsApp and Teams web apps are created by Brave and can be found in `~/.local/share/applications/`.
+
+If those `.desktop` files are recreated  or modified, you need to reapply all the steps for setting up the window rules and autostart entries for those web apps.
+
+### 2.1 Add the `.desktop` files to startup applications
+
+Find the `.desktop` files for WhatsApp and Teams web apps in `~/.local/share/applications/`.
+Copy or move them to `~/.config/autostart/` to add them to startup applications.
+
+### 2.2 Set up window rules for WhatsApp and Teams (Web Apps)
+
+```bash
+nano /home/user/.config/kwinrulesrc
+```
+
+and add new rules:
+
+```ini
+[General]
+count=3
+rules=e2319791-c7a2-4e4f-b342-bfe7f8948b03,f540a6b0-3237-44df-a91e-cfada7523efd,e55b1c3a-05de-46f4-8cd1-68346e708913
+
+[e2319791-c7a2-4e4f-b342-bfe7f8948b03]
+Description=Thunderbird on left monitor
+maximizehoriz=true
+maximizehorizrule=3
+maximizevert=true
+maximizevertrule=3
+position=0,60
+positionrule=3
+size=1920,1036
+sizerule=3
+types=1
+windowrole=3pane
+windowrolematch=1
+wmclass=thunderbird
+wmclassmatch=1
+
+[e55b1c3a-05de-46f4-8cd1-68346e708913]
+Description=Teams on right monitor
+position=3880,40
+positionrule=3
+types=1
+wmclass=kadndpdhfiaigidpmcgmgabmbcjnjbgn
+wmclassmatch=2
+
+[f540a6b0-3237-44df-a91e-cfada7523efd]
+Description=WhatsApp on right monitor
+position=3840,0
+positionrule=3
+types=1
+wmclass=hnpfjngllnobngcgfapefoaidbinmjnm
+wmclassmatch=2
+```
+
+### 2.3 Create a shared startup script
+
+```bash
+mkdir -p /home/user/Applications/brave-apps
+nano /home/user/Applications/brave-apps/startup.sh
+```
+
+Paste:
+
+```bash
+#!/usr/bin/env bash
+APP_ID="$1"
+/opt/brave.com/brave/brave-browser --profile-directory=Default --app-id="$APP_ID" &
+sleep 5
+
+JS=$(mktemp --suffix=.js)
+cat > "$JS" <<EOF
+for (const w of workspace.windowList()) {
+    if (w.resourceClass.includes("$APP_ID")) w.minimized = true;
+}
+EOF
+
+ID=$(qdbus6 org.kde.KWin /Scripting org.kde.kwin.Scripting.loadScript "$JS" "minimize-$APP_ID")
+qdbus6 org.kde.KWin /Scripting/Script$ID org.kde.kwin.Script.run
+sleep 1
+qdbus6 org.kde.KWin /Scripting org.kde.kwin.Scripting.unloadScript "minimize-$APP_ID"
+rm -f "$JS"
+```
+
+```bash
+chmod +x /home/user/Applications/brave-apps/startup.sh
+```
+
+### 2.4 Point the autostart entries at the script
+
+In both files, change only the Exec= line:
+
+```ini
+nano ~/.config/autostart/brave-hnpfjngllnobngcgfapefoaidbinmjnm-Default.desktop
+```
+```bash
+Exec=/home/user/Applications/brave-apps/startup.sh hnpfjngllnobngcgfapefoaidbinmjnm
+```
+```ini
+nano ~/.config/autostart/brave-kadndpdhfiaigidpmcgmgabmbcjnjbgn-Default.desktop
+```
+```bash
+Exec=/home/user/Applications/brave-apps/startup.sh kadndpdhfiaigidpmcgmgabmbcjnjbgn
+```
+
+### 2.5 Test
+
+Before logging out, you can test the script with WhatsApp already open:
+```bash
+/home/user/Applications/brave-apps/startup.sh hnpfjngllnobngcgfapefoaidbinmjnm
+```
