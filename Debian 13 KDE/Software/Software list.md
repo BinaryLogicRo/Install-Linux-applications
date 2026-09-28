@@ -10,6 +10,14 @@ This is a list of recommended software for Debian 13 KDE.
 sudo apt install krusader
 ```
 
+## Utilities
+
+- [FileLight](https://apps.kde.org/filelight/) - visualize the disk usage on your computer
+
+```bash
+sudo apt install filelight
+```
+
 ## Archiving tools
 
 - [RAR/UNRAR](https://www.rarlab.com/download.htm)
