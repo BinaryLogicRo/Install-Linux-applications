@@ -4,7 +4,7 @@ This is a list of recommended software for Debian 13 KDE.
 
 ## File manager
 
-- [Krusader](https://krusader.org/)
+- [Krusader](https://krusader.org/) - advanced twin-panel file manager for KDE (Total Commander-like)
 
 ```bash
 sudo apt install krusader
