@@ -18,6 +18,8 @@ sudo apt install krusader
 sudo apt install filelight
 ```
 
+- [GParted](https://gparted.org/) - GNOME partition editor for creating, reorganizing, and deleting disk partitions
+
 ## Archiving tools
 
 - [RAR/UNRAR](https://www.rarlab.com/download.htm)
