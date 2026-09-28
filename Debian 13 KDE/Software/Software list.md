@@ -25,3 +25,5 @@ sudo apt install filelight
 - [RAR/UNRAR](https://www.rarlab.com/download.htm)
 
 Download the latest version of "RAR for Linux x64" package, extract it, and run `sudo make install` inside the extracted directory.
+
+- [PeaZip](https://github.com/peazip/PeaZip/releases/) - open-source file archiver utility
