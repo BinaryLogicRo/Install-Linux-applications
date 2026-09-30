@@ -1,6 +1,6 @@
 # Software list
 
-This is a list of recommended software for Debian 13 KDE.
+This is a list of recommended software for Debian 13 KDE. Command line tools are included in the [Default applications](<./Default applications.md>) section.
 
 ## File manager
 
