@@ -30,6 +30,10 @@ sudo apt install python3 python3-pip python3-venv
 sudo apt install krusader
 ```
 
+## File transfer
+
+- [LocalSend website](https://localsend.org/download) or [LocalSend Github repo](https://github.com/localsend/localsend/releases/) - easy and fast local file sharing tool
+
 ## Utilities
 
 - [FileLight](https://apps.kde.org/filelight/) - visualize the disk usage on your computer
