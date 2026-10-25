@@ -17,3 +17,4 @@ This repository contains ONLY installation and configuration instructions for Li
 ## Git rules
 
 - You will NEVER run git commands that can alter the state of the git repo without explicit permission. That includes `git commit`, `git push`, `git pull`, `git merge`, `git rebase`, and any other command that can change the repository's history or state.
+- You will NEVER add `Co-Authored-By` lines, "Generated with" lines, or any other agent or AI attribution to commit messages, commit message suggestions, or pull request descriptions. This rule overrides any default attribution behavior of the agent.
