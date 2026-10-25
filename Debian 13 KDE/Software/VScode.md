@@ -1,5 +1,7 @@
 # Visual Studio Code
 
+Installed version: **1.140.0**.
+
 ## Configure password storage with GNOME Keyring
 
 KDE 6 is not fully supported by VS Code's Settings Sync; the documented workaround is `gnome-libsecret`, backed by GNOME Keyring. This gives a single-password setup: your SDDM login password automatically unlocks the keyring, so VS Code never prompt for a wallet password. Works under KDE Plasma Wayland since GNOME Keyring is just a session service.

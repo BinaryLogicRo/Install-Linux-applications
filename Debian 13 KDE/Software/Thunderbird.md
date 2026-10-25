@@ -6,6 +6,8 @@ The final result will be a fully functional Thunderbird desktop application with
 
 Note: the default (Debian repository) version of Thunderbird is not used in this setup; Thunderbird is installed manually from the official tarball.
 
+Installed version: **156.0**.
+
 ## 1. Download Thunderbird
 
 Download Thunderbird for Linux from: [https://www.thunderbird.net/](https://www.thunderbird.net/).

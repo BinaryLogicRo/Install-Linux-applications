@@ -4,6 +4,8 @@ This setup allows a single user to install and use Tor Browser on their system.
 
 The final result will be a fully functional Tor Browser application with a convenient desktop shortcut and icon integrated into the KDE Plasma application menu.
 
+Installed version: **13.5.6**.
+
 ## 1. Download Tor Browser
 
 Download Tor Browser for Linux from: [https://www.torproject.org/download/](https://www.torproject.org/download/).

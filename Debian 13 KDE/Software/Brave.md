@@ -1,5 +1,7 @@
 # Brave Browser
 
+Installed version: **1.98.60**.
+
 ## KDE Wallet issue
 
 Somehow, the default KDE wallet password is setup to something unknown. This creates an issue, where Brave Browser cannot access the wallet to store or retrieve passwords and every time it tries (e.g. on startup), it prompts for the wallet password.

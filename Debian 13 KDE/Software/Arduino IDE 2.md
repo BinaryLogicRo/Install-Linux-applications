@@ -4,6 +4,8 @@ This setup allows a single user to install and use Arduino IDE 2 on their system
 
 The final result will be a fully functional Arduino IDE 2 desktop application with a convenient desktop shortcut and icon integrated into the KDE Plasma application menu. Arduino IDE 1.x and Arduino IDE 2 will use separate boards, libraries and sketchbook folders, so they do not interfere with each other.
 
+Installed version: **2.3.10**.
+
 ## 1. Download Arduino IDE 2
 
 Download Arduino IDE 2 for Linux from: [https://www.arduino.cc/en/software](https://www.arduino.cc/en/software).

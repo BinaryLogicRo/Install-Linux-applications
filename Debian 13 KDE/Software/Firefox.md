@@ -6,6 +6,8 @@ The final result will be a fully functional Firefox desktop application with a c
 
 Note: the default (Debian repository) version of Firefox is not required for this setup; it can remain installed alongside the manually downloaded version without conflict.
 
+Installed version: **158.0.1**.
+
 ## 1. Download Firefox
 
 Download Firefox for Linux from: [https://www.mozilla.org/firefox/new/](https://www.mozilla.org/firefox/new/).
