@@ -41,14 +41,13 @@ The AppImage contains all KiCad tools. The first argument selects the tool to st
 
 A shortcut is created for the project manager and for each tool that opens KiCad files, so the file types can be associated with them in the next step.
 
-1. Download the KiCad icons:
+1. Copy the KiCad icons from this repository ([Assets/KiCad/icons/apps/](Assets/KiCad/icons/apps/)).
+
+Run this from the root folder of this repository:
 
 ```bash
-BASE=https://gitlab.com/kicad/code/kicad/-/raw/10.0/resources/linux/icons/hicolor/scalable
 mkdir -p ~/.local/share/icons/hicolor/scalable/apps
-for i in kicad eeschema pcbnew gerbview; do
-  wget -O ~/.local/share/icons/hicolor/scalable/apps/$i.svg $BASE/apps/$i.svg
-done
+cp "Debian 13 KDE/Software/Assets/KiCad/icons/apps/"*.svg ~/.local/share/icons/hicolor/scalable/apps/
 ```
 
 2. Create the desktop shortcut files:
@@ -166,27 +165,23 @@ kbuildsycoca6
 
 The AppImage does not register the KiCad file types (`.kicad_pro`, `.kicad_sch`, `.kicad_pcb`, etc.) with the system. They must be added manually, using the MIME type definitions from the KiCad source code.
 
-1. Download the MIME type definitions:
+1. Copy the MIME type definitions from this repository ([Assets/KiCad/mime/](Assets/KiCad/mime/)).
+
+Run this from the root folder of this repository:
 
 ```bash
-BASE=https://gitlab.com/kicad/code/kicad/-/raw/10.0/resources/linux/mime
 mkdir -p ~/.local/share/mime/packages
-for m in kicad-kicad kicad-gerbers; do
-  wget -O - $BASE/$m.xml.in | sed 's/@KICAD_MIME_ICON_PREFIX@//' > ~/.local/share/mime/packages/$m.xml
-done
+cp "Debian 13 KDE/Software/Assets/KiCad/mime/"*.xml ~/.local/share/mime/packages/
 ```
 
 **Explanation:**
-- the `sed` command removes the `@KICAD_MIME_ICON_PREFIX@` build placeholder from the source files
+- the files come from the KiCad 10.0 source code (`resources/linux/mime/*.xml.in`), with the `@KICAD_MIME_ICON_PREFIX@` build placeholder already removed
 
-2. Download the file type icons:
+2. Copy the file type icons from this repository ([Assets/KiCad/icons/mimetypes/](Assets/KiCad/icons/mimetypes/)):
 
 ```bash
-BASE=https://gitlab.com/kicad/code/kicad/-/raw/10.0/resources/linux/icons/hicolor/scalable
 mkdir -p ~/.local/share/icons/hicolor/scalable/mimetypes
-for t in project schematic pcb footprint symbol worksheet; do
-  wget -O ~/.local/share/icons/hicolor/scalable/mimetypes/application-x-kicad-$t.svg $BASE/mimetypes/application-x-kicad-$t.svg
-done
+cp "Debian 13 KDE/Software/Assets/KiCad/icons/mimetypes/"*.svg ~/.local/share/icons/hicolor/scalable/mimetypes/
 ```
 
 3. Update the MIME database:

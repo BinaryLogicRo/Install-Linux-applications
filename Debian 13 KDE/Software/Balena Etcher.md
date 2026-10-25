@@ -20,11 +20,13 @@ Navigate to the extracted `balenaEtcher-linux-x64` folder and double-click the `
 
 ## 4. Create a desktop shortcut
 
-1. Download the Balena Etcher icon:
+1. Copy the Balena Etcher icon from this repository ([Assets/Balena Etcher/balena-etcher.png](Assets/Balena%20Etcher/balena-etcher.png)).
+
+Run this from the root folder of this repository:
 
 ```bash
 mkdir -p ~/.local/share/icons
-wget -O ~/.local/share/icons/balena-etcher.png https://user-images.githubusercontent.com/5888446/137905045-2ce0cf85-0f7c-4aa5-92ae-9ad5757b8d48.png
+cp "Debian 13 KDE/Software/Assets/Balena Etcher/balena-etcher.png" ~/.local/share/icons/balena-etcher.png
 ```
 
 2. Create the desktop shortcut file:

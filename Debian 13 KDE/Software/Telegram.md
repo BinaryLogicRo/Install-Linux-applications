@@ -20,11 +20,13 @@ Navigate to the extracted `Telegram` folder and double-click the `Telegram` exec
 
 ## 4. Create a desktop shortcut
 
-1. Download the Telegram icon:
+1. Copy the Telegram icon from this repository ([Assets/Telegram/telegram.png](Assets/Telegram/telegram.png)).
+
+Run this from the root folder of this repository:
 
 ```bash
 mkdir -p ~/.local/share/icons
-wget -O ~/.local/share/icons/telegram.png https://telegram.org/img/t_logo.png
+cp "Debian 13 KDE/Software/Assets/Telegram/telegram.png" ~/.local/share/icons/telegram.png
 ```
 
 2. Create the desktop shortcut file:
