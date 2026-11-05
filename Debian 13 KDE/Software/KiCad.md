@@ -10,30 +10,37 @@ Note: the default (Debian repository) version of KiCad is not used in this setup
 
 Download the KiCad AppImage for Linux from: [https://www.kicad.org/download/linux/](https://www.kicad.org/download/linux/).
 
-The downloaded file will be a tarball (e.g., `kicad-10.0.6-x86_64.AppImage.tar`).
+The examples below use the tested **10.0.7** AppImage. If you download a different version, use its filename in the commands and shortcuts.
 
-Direct download link for version **10.0.6**:
+To download the 10.0.7 tarball directly, run the following command.
 
 ```bash
 cd ~/Downloads
-wget https://kicad-downloads.s3.cern.ch/appimage/stable/kicad-10.0.6-x86_64.AppImage.tar
+wget https://kicad-downloads.s3.cern.ch/appimage/stable/kicad-10.0.7-x86_64.AppImage.tar
 ```
 
 ## 2. Extract the tarball
 
 Using `Ark`, extract the downloaded tarball into the `/home/user/Applications/KiCAD 10/` directory.
 
-This will create the `/home/user/Applications/KiCAD 10/kicad-10.0.6-x86_64.AppImage` file.
+This will create the `/home/user/Applications/KiCAD 10/kicad-10.0.7-x86_64.AppImage` file.
 
 Make sure the AppImage is executable:
 
 ```bash
-chmod +x ~/"Applications/KiCAD 10/kicad-10.0.6-x86_64.AppImage"
+chmod +x ~/"Applications/KiCAD 10/kicad-10.0.7-x86_64.AppImage"
 ```
 
 ## 3. Run KiCad
 
-Navigate to the `KiCAD 10` folder and double-click the `kicad-10.0.6-x86_64.AppImage` executable to start the application.
+On KDE Plasma Wayland, launch the AppImage through XWayland. This works around a native Wayland canvas redraw problem observed in KiCad 10.0.7. [KiCad's known Wayland issues](https://www.kicad.org/help/known-system-related-issues/)
+
+```bash
+env -u WAYLAND_DISPLAY GDK_BACKEND=x11 \
+  "$HOME/Applications/KiCAD 10/kicad-10.0.7-x86_64.AppImage" kicad
+```
+
+The `env` prefix applies the workaround to KiCad for this launch. Once the shortcuts below are installed, use them to start KiCad from the menu or open project files from Dolphin.
 
 ## 4. Create the desktop shortcuts
 
@@ -70,7 +77,7 @@ Version=1.0
 Name=KiCad
 GenericName=EDA Suite
 Comment=Suite of tools for schematic design and circuit board layout
-Exec="/home/user/Applications/KiCAD 10/kicad-10.0.6-x86_64.AppImage" kicad %f
+Exec=env -u WAYLAND_DISPLAY GDK_BACKEND=x11 "/home/user/Applications/KiCAD 10/kicad-10.0.7-x86_64.AppImage" kicad %f
 Icon=/home/user/.local/share/icons/hicolor/scalable/apps/kicad.svg
 Terminal=false
 StartupWMClass=kicad
@@ -95,7 +102,7 @@ Version=1.0
 Name=KiCad Schematic Editor
 GenericName=Schematic Capture Tool
 Comment=Standalone schematic editor for KiCad schematics
-Exec="/home/user/Applications/KiCAD 10/kicad-10.0.6-x86_64.AppImage" eeschema %f
+Exec=env -u WAYLAND_DISPLAY GDK_BACKEND=x11 "/home/user/Applications/KiCAD 10/kicad-10.0.7-x86_64.AppImage" eeschema %f
 Icon=/home/user/.local/share/icons/hicolor/scalable/apps/eeschema.svg
 Terminal=false
 StartupWMClass=eeschema
@@ -119,7 +126,7 @@ Version=1.0
 Name=KiCad PCB Editor
 GenericName=PCB Layout Editor
 Comment=Standalone circuit board editor for KiCad boards
-Exec="/home/user/Applications/KiCAD 10/kicad-10.0.6-x86_64.AppImage" pcbnew %f
+Exec=env -u WAYLAND_DISPLAY GDK_BACKEND=x11 "/home/user/Applications/KiCAD 10/kicad-10.0.7-x86_64.AppImage" pcbnew %f
 Icon=/home/user/.local/share/icons/hicolor/scalable/apps/pcbnew.svg
 Terminal=false
 StartupWMClass=pcbnew
@@ -143,7 +150,7 @@ Version=1.0
 Name=KiCad Gerber Viewer
 GenericName=Gerber File Viewer
 Comment=View Gerber and drill files
-Exec="/home/user/Applications/KiCAD 10/kicad-10.0.6-x86_64.AppImage" gerbview %F
+Exec=env -u WAYLAND_DISPLAY GDK_BACKEND=x11 "/home/user/Applications/KiCAD 10/kicad-10.0.7-x86_64.AppImage" gerbview %F
 Icon=/home/user/.local/share/icons/hicolor/scalable/apps/gerbview.svg
 Terminal=false
 StartupWMClass=gerbview
@@ -153,7 +160,7 @@ MimeType=application/x-gerber;application/vnd.gerber;application/x-excellon;appl
 Keywords=kicad;gerbview;gerber;drill;excellon;electronics;
 ```
 
-**Note:** the `Exec=` path contains a space (`KiCAD 10`), so it must be enclosed in double quotes, otherwise the shortcut will not start.
+Keep the `env` prefix in each `Exec=` line and quote the AppImage path because `KiCAD 10` contains a space.
 
 3. Refresh the menu
 
@@ -213,4 +220,12 @@ xdg-mime query default application/x-kicad-schematic
 
 This should print `kicad-eeschema.desktop`. In Dolphin, `.kicad_pro`, `.kicad_sch` and `.kicad_pcb` files now show the KiCad icons and open with the matching KiCad app on double-click.
 
-**Note:** when updating KiCad to a newer version, replace the AppImage in `/home/user/Applications/KiCAD 10/` and update the file name in the `Exec=` line of all the `kicad*.desktop` files.
+When updating KiCad, replace the AppImage in `/home/user/Applications/KiCAD 10/` and update its filename in each `Exec=` line. Keep the `env` prefix.
+
+## 6. Fix mouse and redraw stalls on an existing installation
+
+On a KDE Plasma Wayland session, KiCad's canvas can stop redrawing during wheel zoom, middle-button dragging, or symbol selection, then show several changes at once. Running KiCad through XWayland fixed all three symptoms in testing with KDE's **Focus follows mouse** and **Raise on hover** enabled.
+
+Save your work and close all KiCad windows. In `~/.local/share/applications/`, add `env -u WAYLAND_DISPLAY GDK_BACKEND=x11` immediately after `Exec=` in your existing KiCad shortcuts. Keep your installed AppImage path, tool name, and file argument. Refresh the KDE menu as shown in step 4, then reopen KiCad from the updated shortcut.
+
+In the schematic and PCB editors, check that wheel zoom and middle-button dragging respond immediately. In the schematic editor, click a symbol and check that it highlights immediately.
