@@ -7,7 +7,7 @@ This is a list of recommended software for Debian 13 KDE. Command line tools are
 Install the every day essential tools:
 
 ```bash
-sudo apt install tmux mc htop net-tools ncdu tree curl lsof
+sudo apt install tmux mc htop net-tools ncdu tree curl lsof unrar-free 7zip ripgrep
 ```
 
 ### System Information Tool
@@ -20,6 +20,12 @@ sudo apt install fastfetch --no-install-recommends
 
 ```bash
 sudo apt install python3 python3-pip python3-venv
+```
+
+Register `python` as the default Python interpreter:
+
+```bash
+sudo ln -s /usr/bin/python3 /usr/bin/python
 ```
 
 ## File manager
