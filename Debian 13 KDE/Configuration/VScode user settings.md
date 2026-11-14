@@ -42,6 +42,8 @@ Paste this in:
     "files.exclude": {
         "**/.git": false
     },
+    "files.autoSave": "afterDelay",
+    "files.hotExit": "onExitAndWindowClose",
     "update.showReleaseNotes": false,
     "github.copilot.enable": {
         "*": true,
@@ -153,6 +155,10 @@ EOF
 Start VS Code, open the Settings UI (`Ctrl+,`) and type `@modified` in the search box. It lists every setting that differs from its default value.
 
 **Notes:**
+- `files.autoSave` and `files.hotExit` stop VS Code from asking you to save unsaved files:
+  - `"files.autoSave": "afterDelay"` saves every file that already has a name on disk about 1 second after you stop typing, so there is nothing left to save when you close it
+  - `"files.hotExit": "onExitAndWindowClose"` keeps new files that were never saved (`Untitled-1` and so on) when you quit VS Code or close a window that has a folder open, and opens them again the next time VS Code starts
+  - VS Code still asks when you close the tab of an untitled file, because that file has no name to save it under
 - Settings for an extension (GitHub Copilot, GitLens, Claude Code, Live Server) take effect only when that extension is installed. Until then, VS Code shows them greyed out as unknown settings. This is harmless.
 - When you change a setting in the Settings UI later, VS Code writes it back to this same file.
 
