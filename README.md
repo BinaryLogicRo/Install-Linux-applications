@@ -33,6 +33,7 @@ Guides are grouped by distribution release, then by topic:
 - [Enable Num Lock](Debian%2013%20KDE/Configuration/Enable%20Num%20Lock.md)
 - [Focus apps under the mouse](Debian%2013%20KDE/Configuration/Focus%20apps%20under%20the%20mouse.md)
 - ["Open with" in folders](Debian%2013%20KDE/Configuration/Open%20with%20in%20folders.md)
+- [Remove Claude file manager menu entries](./Debian%2012%20KDE/Configuration/Remove%20Claude%20file%20manager%20menu%20entries.md)
 - [Secure SSH folder and keys](Debian%2013%20KDE/Configuration/Secure%20SSH%20folder%20and%20keys.md)
 - [Startup for all programs](Debian%2013%20KDE/Configuration/Startup%20for%20all%20programs.md)
 - [VS Code user settings](Debian%2013%20KDE/Configuration/VScode%20user%20settings.md)
